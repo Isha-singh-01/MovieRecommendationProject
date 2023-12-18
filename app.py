@@ -5,6 +5,8 @@ import requests
 
 movies = pickle.load(open('movie_dict.pkl','rb'))
 similarity = pickle.load(open('similarity.pkl','rb'))
+popular = pickle.load(open('popular.pkl','rb'))
+popular_movies_df = pd.DataFrame(popular)
 movies_df = pd.DataFrame(movies)
 
 def fetch_poster(movie_id):
@@ -24,9 +26,36 @@ def recommend(movie):
         posters.append(fetch_poster(movie_id))
     return recommendations,posters
 
+
+def popular_movies():
+    titles = popular_movies_df['original_title'].values
+    ids = popular_movies_df['id'].values
+    genres = popular_movies_df['genres'].values
+    vote_count = popular_movies_df['vote_count'].values
+    vote_average = popular_movies_df['vote_average'].values
+    movieIDs = []
+    list_of_titles = []
+    genreslist = []
+    count = []
+    rating = []
+    for i in titles:
+        list_of_titles.append(i)
+    for i in ids:
+        movieIDs.append(i)
+    for i in genres:
+        genreslist.append(i)
+    for i in vote_count:
+        count.append(i)
+    for i in vote_average:
+        rating.append(i)
+    return list_of_titles, movieIDs, genreslist, count, rating
+
+
 st.title('Movie Recommender System')
+
+st.subheader('Recommendations', divider='rainbow')
 selected_movie = st.selectbox(
-    'Which movie did you watch today?',movies_df['original_title'].values)
+    'Please select a movie',movies_df['original_title'].values)
 
 if st.button('Recommend'):
     movies, posters = recommend(selected_movie)
@@ -47,3 +76,41 @@ if st.button('Recommend'):
         st.text(movies[4])
         st.image(posters[4])
 
+st.subheader('Top 5 Trending Movies', divider='rainbow')
+titles,movie_id, genres, counts, ratings = popular_movies()
+col1, col2, col3, col4, col5 = st.columns(5)
+with col1:
+    st.text(titles[0])
+    st.image(fetch_poster(movie_id[0]))
+    with st.expander("See more"):
+        st.text(f"Genres: {genres[0]}")
+        st.text(f"Vote Counts: {counts[0]}")
+        st.text(f"Rating: {ratings[0]}")
+with col2:
+    st.text(titles[1])
+    st.image(fetch_poster(movie_id[1]))
+    with st.expander("See more"):
+        st.text(f"Genres: {genres[1]}")
+        st.text(f"Vote Counts: {counts[1]}")
+        st.text(f"Rating: {ratings[1]}")
+with col3:
+    st.text(titles[2])
+    st.image(fetch_poster(movie_id[2]))
+    with st.expander("See more"):
+        st.text(f"Genres: {genres[2]}")
+        st.text(f"Vote Counts: {counts[2]}")
+        st.text(f"Rating: {ratings[2]}")
+with col4:
+    st.text(titles[3])
+    st.image(fetch_poster(movie_id[3]))
+    with st.expander("See more"):
+        st.text(f"Genres: {genres[3]}")
+        st.text(f"Vote Counts: {counts[3]}")
+        st.text(f"Rating: {ratings[3]}")
+with col5:
+    st.text(titles[4])
+    st.image(fetch_poster(movie_id[4]))
+    with st.expander("See more"):
+        st.text(f"Genres: {genres[4]}")
+        st.text(f"Vote Counts: {counts[4]}")
+        st.text(f"Rating: {ratings[4]}")
