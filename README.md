@@ -31,5 +31,10 @@ The "You may also like" section displays movie recommendations based on Collabor
 ## Popular Movies based on user voting
 ![popular](https://github.com/Isha-singh-01/MovieRecommendationProject/assets/59357002/92faa9ce-e26f-4126-b95b-d4a0d8c636f9)
 
+## Tableau Dashboard to visualize trends and preferences
+- [Tableau public link](https://public.tableau.com/views/TMDBDashboard_17048701588970/Dashboard1?:language=en-US&:display_count=n&:origin=viz_share_link)
+-  ![Dashboard 1](https://github.com/Isha-singh-01/MovieRecommendationProject/assets/59357002/b6b474df-a2ae-4023-aee3-1021277b9a7d)
+
+
 
 
