@@ -1,4 +1,4 @@
-# MovieRecommendationProject
+# Movie Recommendation using ML
 ## Overview
 This project implements a Movie Recommendation System using both **Content-Based Filtering** and **Collaborative-Based Filtering** techniques. The system extracts movie data from the TMDb website, performs data cleaning, and utilizes machine learning algorithms to provide personalized movie recommendations.
 ## Data Collection
